@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Add Warehouse — ZoneScore</title>
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="stylesheet" href="/styles.css"/>
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+
+<div class="form-page">
+  <div class="form-page-inner">
+
+    <a href="/" class="form-page-back">
+      <i data-feather="arrow-left"></i> Back to home
+    </a>
+
+    <div id="healthBadge" class="page-health checking">
+      <span class="page-health-dot"></span>
+      <span id="healthLabel">Checking backend…</span>
+    </div>
+
+    <div class="form-page-card">
+      <div class="form-page-title">Add Dark Store Warehouse</div>
+      <div class="form-page-sub">
+        New warehouses are immediately available for load balancing across all 4 algorithms.
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">
+            Warehouse Name <span class="form-required">*</span>
+          </label>
+          <input class="form-input" id="whName" placeholder="e.g. Mumbai Central Dark Store"/>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">City</label>
+          <input class="form-input" id="whCity" placeholder="e.g. Mumbai"/>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">
+              Latitude <span class="form-required">*</span>
+            </label>
+            <input class="form-input" id="whLat" type="number" step="any" placeholder="19.0760"/>
+            <span class="form-hint">Decimal degrees (e.g. 19.0760)</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">
+              Longitude <span class="form-required">*</span>
+            </label>
+            <input class="form-input" id="whLon" type="number" step="any" placeholder="72.8777"/>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">
+              Capacity <span class="form-required">*</span>
+            </label>
+            <input class="form-input" id="whCap" type="number" placeholder="100" min="1"/>
+            <span class="form-hint">Max concurrent orders this warehouse can handle</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Status</label>
+            <select class="form-select" id="whStatus">
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+              <option value="maintenance">Maintenance</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary form-submit-btn" id="submitBtn" onclick="submitWarehouse()">
+        <i data-feather="plus-circle"></i> Add Warehouse
+      </button>
+
+      <div id="formAlert" class="alert"></div>
+    </div>
+
+  </div>
+</div>
+
+<script src="/api.js"></script>
+<script src="/js/database.js"></script>
+</body>
+</html>

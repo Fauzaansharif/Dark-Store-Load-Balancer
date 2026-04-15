@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zonescore - Dark Store Management</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      .landing-body {
+        /* Translucent warehouse background */
+        background:
+          linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)),
+          url("https://images.unsplash.com/photo-1586528116311-ad8c73c41bc3?q=80&w=2070&auto=format&fit=crop")
+            no-repeat center center fixed;
+        background-size: cover;
+        color: #ffffff;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .hero-section {
+        text-align: center;
+        margin-bottom: 50px;
+        animation: fadeInDown 1s ease-out;
+      }
+
+      .hero-section h1 {
+        font-size: 3.5rem;
+        margin-bottom: 10px;
+        text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-section p {
+        font-size: 1.2rem;
+        color: #cbd5e1;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .overview-cards {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 50px;
+      }
+
+      .landing-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        padding: 30px;
+        width: 300px;
+        text-align: center;
+      }
+
+      .login-section {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
+
+      .login-section input {
+        width: 90%;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+      }
+
+      .btn-primary {
+        background-color: #3b82f6;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+        margin-top: 15px;
+        width: 100%;
+      }
+
+      .btn-primary:hover {
+        background-color: #2563eb;
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body class="landing-body">
+    <div class="hero-section">
+      <h1>Zonescore</h1>
+      <p>Advanced Dark Store Load Balancing & Warehouse Management System.</p>
+    </div>
+
+    <div class="overview-cards">
+      <div class="landing-card card-3d">
+        <h3>Real-Time Analytics</h3>
+        <p>
+          Monitor warehouse zones, track scores, and balance loads seamlessly
+          across your dark store infrastructure.
+        </p>
+      </div>
+      <div class="landing-card card-3d">
+        <h3>Order Routing</h3>
+        <p>
+          Intelligently distribute incoming orders to the optimal warehouse
+          based on capacity and distance metrics.
+        </p>
+      </div>
+      <div class="landing-card card-3d">
+        <h3>System Health</h3>
+        <p>
+          Maintain high availability with automated workflow checks and database
+          connection monitoring.
+        </p>
+      </div>
+    </div>
+
+    <div class="login-section card-3d">
+      <h2>Admin Portal</h2>
+      <form id="login-form">
+        <input type="text" placeholder="Admin Username" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit" class="btn-primary card-3d">
+          Login to Dashboard
+        </button>
+      </form>
+    </div>
+
+    <script>
+      // Handle login redirect to the existing dashboard
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault(); // Prevent actual form submission
+
+          // In a real app, you would validate credentials against your database here.
+          // For now, it redirects straight to your dashboard logic.
+          window.location.href = "./dashboard/index.html";
+        });
+    </script>
+  </body>
+</html>

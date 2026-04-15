@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/styles.css"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Workflows — ZoneScore</title>
+  <link rel="icon" href="/favicon.ico"/>  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div class="layout">
+
+  <main class="main">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="page-title">Workflows</div>
+        <div class="page-sub">Automate actions based on warehouse and order triggers</div>
+      </div>
+      <div class="page-actions">
+        <button class="btn btn-primary" onclick="openModal()">
+          <i data-feather="plus"></i> New Workflow
+        </button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <div class="table-header">
+        <span class="table-title">All Workflows</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Trigger</th>
+            <th>Action</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="wfBody">
+          <tr><td colspan="5" class="table-empty"><span class="spinner"></span> Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="pageAlert" class="alert"></div>
+  </main>
+</div>
+
+<!-- New Workflow Modal -->
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">New Workflow</span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Workflow Name <span class="form-required">*</span></label>
+        <input class="form-input" id="wfName" placeholder="e.g. Alert when load exceeds 80%"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Trigger <span class="form-required">*</span></label>
+        <select class="form-select" id="wfTrigger">
+          <option value="load_threshold_80">Warehouse load &gt; 80%</option>
+          <option value="load_threshold_90">Warehouse load &gt; 90%</option>
+          <option value="warehouse_inactive">Warehouse goes inactive</option>
+          <option value="new_order">New order received</option>
+          <option value="order_delivered">Order delivered</option>
+          <option value="order_cancelled">Order cancelled</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Action <span class="form-required">*</span></label>
+        <select class="form-select" id="wfAction">
+          <option value="notify_admin">Notify admin</option>
+          <option value="auto_rebalance">Auto-rebalance orders</option>
+          <option value="switch_algorithm">Switch load balancing algorithm</option>
+          <option value="pause_warehouse">Pause warehouse intake</option>
+          <option value="log_event">Log event to database</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveWorkflow()">Create Workflow</button>
+    </div>
+  </div>
+</div>
+
+<script src="/api.js"></script>
+<script src="/sidebar.js"></script>
+<script src="/js/workflows.js"></script>
+</body>
+</html>

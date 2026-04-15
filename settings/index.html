@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Settings — ZoneScore</title>
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="stylesheet" href="/styles.css"/>
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div class="layout">
+
+  <main class="main">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="page-title">Settings</div>
+        <div class="page-sub">Configure your ZoneScore platform</div>
+      </div>
+    </div>
+
+    <div class="settings-layout">
+
+      <!-- Tab nav -->
+      <div class="settings-tabs">
+        <button class="settings-tab active" onclick="showTab('general')">
+          <i data-feather="sliders"></i> General
+        </button>
+        <button class="settings-tab" onclick="showTab('algorithms')">
+          <i data-feather="cpu"></i> Algorithms
+        </button>
+        <button class="settings-tab" onclick="showTab('notifications')">
+          <i data-feather="bell"></i> Notifications
+        </button>
+        <button class="settings-tab" onclick="showTab('api')">
+          <i data-feather="code"></i> API
+        </button>
+        <button class="settings-tab" onclick="showTab('danger')">
+          <i data-feather="alert-triangle"></i> Danger Zone
+        </button>
+      </div>
+
+      <!-- Panels -->
+      <div>
+
+        <!-- General -->
+        <div class="settings-panel active" id="tab-general">
+          <div class="settings-section">
+            <div class="settings-section-title">Platform Settings</div>
+            <div class="settings-section-desc">Basic configuration for your ZoneScore instance.</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Platform Name</label>
+                <input class="form-input" id="platformName" value="ZoneScore"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Backend URL</label>
+                <input class="form-input" id="backendUrlInput"/>
+                <span class="form-hint">Update this in <code>/api.js</code> → <code>BACKEND_URL</code></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Default Algorithm</label>
+                <select class="form-select" id="defaultAlgo">
+                  <option value="nearest">Nearest Warehouse</option>
+                  <option value="round-robin">Round Robin</option>
+                  <option value="weighted-round-robin">Weighted Round Robin</option>
+                  <option value="least-loaded">Least Loaded</option>
+                </select>
+                <span class="form-hint">Used when no algorithm is specified in an order request.</span>
+              </div>
+            </div>
+            <div style="margin-top:18px">
+              <button class="btn btn-primary" onclick="saveGeneral()">Save Changes</button>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <div class="settings-section-title">Dashboard Preferences</div>
+            <div class="settings-section-desc">Control what appears on your dashboard.</div>
+            <div class="toggle-row">
+              <div class="toggle-row-info">
+                <div class="toggle-row-label">Auto-refresh</div>
+                <div class="toggle-row-desc">Automatically refresh dashboard stats every 30 seconds.</div>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="autoRefresh" checked/>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-row-info">
+                <div class="toggle-row-label">Show algorithm simulator</div>
+                <div class="toggle-row-desc">Display the 4-algorithm comparison panel on the dashboard.</div>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" id="showSimulator" checked/>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Algorithms -->
+        <div class="settings-panel" id="tab-algorithms">
+          <div class="settings-section">
+            <div class="settings-section-title">Load Balancing Algorithms</div>
+            <div class="settings-section-desc">Enable or disable algorithms available for order dispatch.</div>
+            <div class="toggle-row">
+              <div class="toggle-row-info">
+                <div class="toggle-row-label">📍 Nearest Warehouse</div>
+                <div class="toggle-row-desc">Assigns order to the geographically closest warehouse using Haversine formula.</div>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" checked disabled/>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-row-info">
+                <div class="toggle-row-label">🔄 Round Robin</div>
+                <div class="toggle-row-desc">Cycles through warehouses in order — each gets a fair turn.</div>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" checked/>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-row-info">
+                <div class="toggle-row-label">⚖️ Weighted Round Robin</div>
+                <div class="toggle-row-desc">Higher-capacity warehouses receive proportionally more orders.</div>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" checked/>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-row-info">
+                <div class="toggle-row-label">🪶 Least Loaded</div>
+                <div class="toggle-row-desc">Assigns to the warehouse with the most remaining free capacity.</div>
+              </div>
+              <label class="toggle">
+                <input type="checkbox" checked/>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <div class="settings-section-title">Capacity Thresholds</div>
+            <div class="settings-section-desc">Define when a warehouse is considered overloaded.</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Warning threshold (%)</label>
+                <input class="form-input" type="number" value="70" min="1" max="100"/>
+                <span class="form-hint">Yellow load bar</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Critical threshold (%)</label>
+                <input class="form-input" type="number" value="90" min="1" max="100"/>
+                <span class="form-hint">Red load bar</span>
+              </div>
+            </div>
+            <div style="margin-top:18px">
+              <button class="btn btn-primary" onclick="saveThresholds()">Save Thresholds</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="settings-panel" id="tab-notifications">
+          <div class="settings-section">
+            <div class="settings-section-title">Alert Preferences</div>
+            <div class="settings-section-desc">Choose which events trigger notifications.</div>
+            <div class="toggle-row">
+              <div class="toggle-row-info">
+                <div class="toggle-row-label">Warehouse load &gt; 80%</div>
+                <div class="toggle-row-desc">Alert when any warehouse exceeds 80% capacity.</div>
+              </div>
+              <label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-row-info">
+                <div class="toggle-row-label">Warehouse goes offline</div>
+                <div class="toggle-row-desc">Alert when a warehouse status changes to inactive.</div>
+              </div>
+              <label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-row-info">
+                <div class="toggle-row-label">All warehouses full</div>
+                <div class="toggle-row-desc">Alert when no warehouse can accept new orders.</div>
+              </div>
+              <label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-row-info">
+                <div class="toggle-row-label">New order placed</div>
+                <div class="toggle-row-desc">Notify for every new incoming order.</div>
+              </div>
+              <label class="toggle"><input type="checkbox"/><span class="toggle-slider"></span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- API -->
+        <div class="settings-panel" id="tab-api">
+          <div class="settings-section">
+            <div class="settings-section-title">API Configuration</div>
+            <div class="settings-section-desc">Connection details for your backend server.</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Backend URL (read-only)</label>
+                <input class="form-input" id="apiBackendUrl" readonly/>
+                <span class="form-hint">Change this value in <code>api.js</code> → const <code>BACKEND_URL</code></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Health endpoint</label>
+                <input class="form-input" id="healthEndpoint" readonly/>
+              </div>
+            </div>
+            <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+              <button class="btn btn-success" onclick="testConnection()">
+                <i data-feather="wifi"></i> Test Connection
+              </button>
+            </div>
+            <div id="connResult" class="alert" style="margin-top:12px"></div>
+          </div>
+        </div>
+
+        <!-- Danger Zone -->
+        <div class="settings-panel" id="tab-danger">
+          <div class="settings-section danger-zone">
+            <div class="settings-section-title">Danger Zone</div>
+            <div class="settings-section-desc">These actions are irreversible. Proceed with caution.</div>
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+                <div>
+                  <div style="font-weight:600;margin-bottom:3px">Reset all order counters</div>
+                  <div style="font-size:0.8rem;color:var(--text2)">Sets <code>current_orders</code> to 0 on every warehouse.</div>
+                </div>
+                <button class="btn btn-danger" onclick="resetCounters()">Reset Counters</button>
+              </div>
+              <div class="divider"></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+                <div>
+                  <div style="font-weight:600;margin-bottom:3px">Delete all orders</div>
+                  <div style="font-size:0.8rem;color:var(--text2)">Permanently removes all order records from the database.</div>
+                </div>
+                <button class="btn btn-danger" onclick="confirmDeleteOrders()">Delete All Orders</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="pageAlert" class="alert"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="/api.js"></script>
+<script src="/sidebar.js"></script>
+<script src="/js/settings.js"></script>
+</body>
+</html>
