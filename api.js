@@ -5,9 +5,7 @@
 //  ⚠️  After deploying backend, update BACKEND_URL below.
 // ============================================================
 
-const BACKEND_URL = "http://localhost:5000";
-// → Change to your Render URL after deploy, e.g.:
-// const BACKEND_URL = "https://zonescore-backend.onrender.com";
+const BACKEND_URL = "https://zonescore-backend.onrender.com";
 
 const API = {
   // Warehouses
