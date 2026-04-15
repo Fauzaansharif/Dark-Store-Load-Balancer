@@ -11,35 +11,38 @@ const BACKEND_URL = "http://localhost:5000";
 
 const API = {
   // Warehouses
-  getWarehouses:    (status) => _get(`/api/warehouses${status ? "?status="+status : ""}`),
-  getWarehouse:     (id)     => _get(`/api/warehouses/${id}`),
-  addWarehouse:     (data)   => _post("/api/warehouses", data),
-  updateWarehouse:  (id, d)  => _put(`/api/warehouses/${id}`, d),
-  deleteWarehouse:  (id)     => _del(`/api/warehouses/${id}`),
-  setStatus:        (id, s)  => _patch(`/api/warehouses/${id}/status`, { status: s }),
+  getWarehouses: (status) =>
+    _get(`/api/warehouses${status ? "?status=" + status : ""}`),
+  getWarehouse: (id) => _get(`/api/warehouses/${id}`),
+  addWarehouse: (data) => _post("/api/warehouses", data),
+  updateWarehouse: (id, d) => _put(`/api/warehouses/${id}`, d),
+  deleteWarehouse: (id) => _del(`/api/warehouses/${id}`),
+  setStatus: (id, s) => _patch(`/api/warehouses/${id}/status`, { status: s }),
 
   // Orders
-  placeOrder:       (data)   => _post("/api/orders", data),
-  getOrders:        (params) => _get("/api/orders" + _qs(params)),
-  updateOrderStatus:(id, s)  => _patch(`/api/orders/${id}/status`, { status: s }),
-  simulate:         (lat,lon)=> _post("/api/orders/simulate", { customerLat: lat, customerLon: lon }),
+  placeOrder: (data) => _post("/api/orders", data),
+  getOrders: (params) => _get("/api/orders" + _qs(params)),
+  updateOrderStatus: (id, s) =>
+    _patch(`/api/orders/${id}/status`, { status: s }),
+  simulate: (lat, lon) =>
+    _post("/api/orders/simulate", { customerLat: lat, customerLon: lon }),
 
-  // Dashboard
-  getStats:         ()       => _get("/api/dashboard/stats"),
-  getWarehouseLoad: ()       => _get("/api/dashboard/warehouse-load"),
+  // Dashboards
+  getStats: () => _get("/api/dashboard/stats"),
+  getWarehouseLoad: () => _get("/api/dashboard/warehouse-load"),
 
   // Workflows
-  getWorkflows:     ()       => _get("/api/workflows"),
-  createWorkflow:   (data)   => _post("/api/workflows", data),
-  toggleWorkflow:   (id)     => _patch(`/api/workflows/${id}/toggle`, {}),
-  deleteWorkflow:   (id)     => _del(`/api/workflows/${id}`),
+  getWorkflows: () => _get("/api/workflows"),
+  createWorkflow: (data) => _post("/api/workflows", data),
+  toggleWorkflow: (id) => _patch(`/api/workflows/${id}/toggle`, {}),
+  deleteWorkflow: (id) => _del(`/api/workflows/${id}`),
 
   // Billing
-  getBilling:       ()       => _get("/api/billing"),
-  upgradePlan:      (plan)   => _post("/api/billing/upgrade", { plan }),
+  getBilling: () => _get("/api/billing"),
+  upgradePlan: (plan) => _post("/api/billing/upgrade", { plan }),
 
   // Health
-  health:           ()       => _get("/api/health").catch(() => ({ status: "offline" })),
+  health: () => _get("/api/health").catch(() => ({ status: "offline" })),
 };
 
 // ── Internal helpers ──────────────────────────────────────────
@@ -49,21 +52,24 @@ async function _get(path) {
 }
 async function _post(path, body) {
   const r = await fetch(BACKEND_URL + path, {
-    method: "POST", headers: { "Content-Type": "application/json" },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
   return r.json();
 }
 async function _put(path, body) {
   const r = await fetch(BACKEND_URL + path, {
-    method: "PUT", headers: { "Content-Type": "application/json" },
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
   return r.json();
 }
 async function _patch(path, body) {
   const r = await fetch(BACKEND_URL + path, {
-    method: "PATCH", headers: { "Content-Type": "application/json" },
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
   return r.json();

@@ -1,157 +1,234 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <link rel="stylesheet" href="/styles.css"/>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Connections — ZoneScore</title>
-  <link rel="icon" href="/favicon.ico"/>  <script src="https://unpkg.com/feather-icons"></script>
-</head>
-<body>
-<div class="layout">
+  <head>
+    <link rel="stylesheet" href="/styles.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Connections — ZoneScore</title>
+    <link rel="icon" href="/favicon.ico" />
+    <script src="https://unpkg.com/feather-icons"></script>
+  </head>
+  <body>
+    <div class="layout">
+      <main class="main">
+        <div class="page-header">
+          <div class="page-header-left">
+            <div class="page-title">Connections</div>
+            <div class="page-sub">
+              Integrate ZoneScore with external services and tools
+            </div>
+          </div>
+        </div>
 
-  <main class="main">
-    <div class="page-header">
-      <div class="page-header-left">
-        <div class="page-title">Connections</div>
-        <div class="page-sub">Integrate ZoneScore with external services and tools</div>
-      </div>
+        <div class="card" id="backendStatus" style="margin-bottom: 24px">
+          <div class="card-title">Backend Status</div>
+          <div id="backendStatusBody">
+            <span class="spinner"></span> Checking connection…
+          </div>
+        </div>
+
+        <div class="conn-grid">
+          <div class="conn-card">
+            <div class="conn-header">
+              <div class="conn-icon">🗄️</div>
+              <div>
+                <div class="conn-name">SQLite Database</div>
+                <div class="conn-type">Local SQL · Built-in</div>
+              </div>
+            </div>
+            <div class="conn-desc">
+              All warehouses, orders, and workflows stored in
+              <code>db/zonescore.db</code>. No external DB needed.
+            </div>
+            <div class="conn-footer">
+              <span class="badge active">Connected</span>
+              <span style="font-size: 0.75rem; color: var(--text2)"
+                >better-sqlite3</span
+              >
+            </div>
+          </div>
+
+          <div class="conn-card">
+            <div class="conn-header">
+              <div class="conn-icon">⚡</div>
+              <div>
+                <div class="conn-name">REST API</div>
+                <div class="conn-type">Express.js · Port 5000</div>
+              </div>
+            </div>
+            <div class="conn-desc">
+              All pages connect to your backend via <code>fetch()</code> calls
+              defined in <code>/api.js</code>.
+            </div>
+            <div class="conn-footer">
+              <span class="badge active" id="restBadge">Checking…</span>
+              <code id="backendUrl"></code>
+            </div>
+          </div>
+
+          <div class="conn-card dimmed">
+            <div class="conn-header">
+              <div class="conn-icon">
+                <img
+                  src="/googleDrive.png"
+                  alt="Google Drive"
+                  onerror="this.parentElement.textContent = '📁'"
+                />
+              </div>
+              <div>
+                <div class="conn-name">Google Drive</div>
+                <div class="conn-type">Export reports</div>
+              </div>
+            </div>
+            <div class="conn-desc">
+              Export warehouse load reports and order analytics directly to
+              Google Drive.
+            </div>
+            <div class="conn-footer">
+              <span class="badge inactive">Not connected</span>
+              <button class="btn btn-ghost btn-sm">Connect</button>
+            </div>
+          </div>
+
+          <div class="conn-card dimmed">
+            <div class="conn-header">
+              <div class="conn-icon">
+                <img
+                  src="/slack.png"
+                  alt="Slack"
+                  onerror="this.parentElement.textContent = '💬'"
+                />
+              </div>
+              <div>
+                <div class="conn-name">Slack</div>
+                <div class="conn-type">Webhook alerts</div>
+              </div>
+            </div>
+            <div class="conn-desc">
+              Send real-time alerts to a Slack channel when warehouse load
+              exceeds thresholds.
+            </div>
+            <div class="conn-footer">
+              <span class="badge inactive">Not connected</span>
+              <button class="btn btn-ghost btn-sm">Connect</button>
+            </div>
+          </div>
+
+          <div class="conn-card dimmed">
+            <div class="conn-header">
+              <div class="conn-icon">
+                <img
+                  src="/notion.png"
+                  alt="Notion"
+                  onerror="this.parentElement.textContent = '📝'"
+                />
+              </div>
+              <div>
+                <div class="conn-name">Notion</div>
+                <div class="conn-type">Workspace sync</div>
+              </div>
+            </div>
+            <div class="conn-desc">
+              Sync warehouse data and order analytics to a Notion database page.
+            </div>
+            <div class="conn-footer">
+              <span class="badge inactive">Not connected</span>
+              <button class="btn btn-ghost btn-sm">Connect</button>
+            </div>
+          </div>
+
+          <div class="conn-card dimmed">
+            <div class="conn-header">
+              <div class="conn-icon">
+                <img
+                  src="/discord.png"
+                  alt="Discord"
+                  onerror="this.parentElement.textContent = '🎮'"
+                />
+              </div>
+              <div>
+                <div class="conn-name">Discord</div>
+                <div class="conn-type">Webhook alerts</div>
+              </div>
+            </div>
+            <div class="conn-desc">
+              Post load alerts and order milestones to a Discord server channel.
+            </div>
+            <div class="conn-footer">
+              <span class="badge inactive">Not connected</span>
+              <button class="btn btn-ghost btn-sm">Connect</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- API Endpoints reference -->
+        <div class="table-wrap">
+          <div class="table-header">
+            <span class="table-title">API Endpoint Reference</span>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Endpoint</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>GET</code></td>
+                <td><code>/api/warehouses</code></td>
+                <td>List all warehouses</td>
+              </tr>
+              <tr>
+                <td><code>POST</code></td>
+                <td><code>/api/warehouses</code></td>
+                <td>Add new warehouse</td>
+              </tr>
+              <tr>
+                <td><code>PUT</code></td>
+                <td><code>/api/warehouses/:id</code></td>
+                <td>Update warehouse</td>
+              </tr>
+              <tr>
+                <td><code>DELETE</code></td>
+                <td><code>/api/warehouses/:id</code></td>
+                <td>Delete warehouse</td>
+              </tr>
+              <tr>
+                <td><code>POST</code></td>
+                <td><code>/api/orders</code></td>
+                <td>Place order — runs load balancing algorithm</td>
+              </tr>
+              <tr>
+                <td><code>POST</code></td>
+                <td><code>/api/orders/simulate</code></td>
+                <td>Compare all 4 algorithms (no DB write)</td>
+              </tr>
+              <tr>
+                <td><code>GET</code></td>
+                <td><code>/api/dashboard/stats</code></td>
+                <td>KPI analytics</td>
+              </tr>
+              <tr>
+                <td><code>GET</code></td>
+                <td><code>/api/dashboard/warehouse-load</code></td>
+                <td>Per-warehouse load data</td>
+              </tr>
+              <tr>
+                <td><code>GET</code></td>
+                <td><code>/api/health</code></td>
+                <td>Backend health check</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
     </div>
 
-    <div class="card" id="backendStatus" style="margin-bottom:24px;">
-      <div class="card-title">Backend Status</div>
-      <div id="backendStatusBody">
-        <span class="spinner"></span> Checking connection…
-      </div>
-    </div>
-
-    <div class="conn-grid">
-      <div class="conn-card">
-        <div class="conn-header">
-          <div class="conn-icon">🗄️</div>
-          <div>
-            <div class="conn-name">SQLite Database</div>
-            <div class="conn-type">Local SQL · Built-in</div>
-          </div>
-        </div>
-        <div class="conn-desc">All warehouses, orders, and workflows stored in <code>db/zonescore.db</code>. No external DB needed.</div>
-        <div class="conn-footer">
-          <span class="badge active">Connected</span>
-          <span style="font-size:0.75rem;color:var(--text2)">better-sqlite3</span>
-        </div>
-      </div>
-
-      <div class="conn-card">
-        <div class="conn-header">
-          <div class="conn-icon">⚡</div>
-          <div>
-            <div class="conn-name">REST API</div>
-            <div class="conn-type">Express.js · Port 5000</div>
-          </div>
-        </div>
-        <div class="conn-desc">All pages connect to your backend via <code>fetch()</code> calls defined in <code>/api.js</code>.</div>
-        <div class="conn-footer">
-          <span class="badge active" id="restBadge">Checking…</span>
-          <code id="backendUrl"></code>
-        </div>
-      </div>
-
-      <div class="conn-card dimmed">
-        <div class="conn-header">
-          <div class="conn-icon">
-            <img src="/googleDrive.png" alt="Google Drive" onerror="this.parentElement.textContent='📁'"/>
-          </div>
-          <div>
-            <div class="conn-name">Google Drive</div>
-            <div class="conn-type">Export reports</div>
-          </div>
-        </div>
-        <div class="conn-desc">Export warehouse load reports and order analytics directly to Google Drive.</div>
-        <div class="conn-footer">
-          <span class="badge inactive">Not connected</span>
-          <button class="btn btn-ghost btn-sm">Connect</button>
-        </div>
-      </div>
-
-      <div class="conn-card dimmed">
-        <div class="conn-header">
-          <div class="conn-icon">
-            <img src="/slack.png" alt="Slack" onerror="this.parentElement.textContent='💬'"/>
-          </div>
-          <div>
-            <div class="conn-name">Slack</div>
-            <div class="conn-type">Webhook alerts</div>
-          </div>
-        </div>
-        <div class="conn-desc">Send real-time alerts to a Slack channel when warehouse load exceeds thresholds.</div>
-        <div class="conn-footer">
-          <span class="badge inactive">Not connected</span>
-          <button class="btn btn-ghost btn-sm">Connect</button>
-        </div>
-      </div>
-
-      <div class="conn-card dimmed">
-        <div class="conn-header">
-          <div class="conn-icon">
-            <img src="/notion.png" alt="Notion" onerror="this.parentElement.textContent='📝'"/>
-          </div>
-          <div>
-            <div class="conn-name">Notion</div>
-            <div class="conn-type">Workspace sync</div>
-          </div>
-        </div>
-        <div class="conn-desc">Sync warehouse data and order analytics to a Notion database page.</div>
-        <div class="conn-footer">
-          <span class="badge inactive">Not connected</span>
-          <button class="btn btn-ghost btn-sm">Connect</button>
-        </div>
-      </div>
-
-      <div class="conn-card dimmed">
-        <div class="conn-header">
-          <div class="conn-icon">
-            <img src="/discord.png" alt="Discord" onerror="this.parentElement.textContent='🎮'"/>
-          </div>
-          <div>
-            <div class="conn-name">Discord</div>
-            <div class="conn-type">Webhook alerts</div>
-          </div>
-        </div>
-        <div class="conn-desc">Post load alerts and order milestones to a Discord server channel.</div>
-        <div class="conn-footer">
-          <span class="badge inactive">Not connected</span>
-          <button class="btn btn-ghost btn-sm">Connect</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- API Endpoints reference -->
-    <div class="table-wrap">
-      <div class="table-header">
-        <span class="table-title">API Endpoint Reference</span>
-      </div>
-      <table>
-        <thead>
-          <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>GET</code></td><td><code>/api/warehouses</code></td><td>List all warehouses</td></tr>
-          <tr><td><code>POST</code></td><td><code>/api/warehouses</code></td><td>Add new warehouse</td></tr>
-          <tr><td><code>PUT</code></td><td><code>/api/warehouses/:id</code></td><td>Update warehouse</td></tr>
-          <tr><td><code>DELETE</code></td><td><code>/api/warehouses/:id</code></td><td>Delete warehouse</td></tr>
-          <tr><td><code>POST</code></td><td><code>/api/orders</code></td><td>Place order — runs load balancing algorithm</td></tr>
-          <tr><td><code>POST</code></td><td><code>/api/orders/simulate</code></td><td>Compare all 4 algorithms (no DB write)</td></tr>
-          <tr><td><code>GET</code></td><td><code>/api/dashboard/stats</code></td><td>KPI analytics</td></tr>
-          <tr><td><code>GET</code></td><td><code>/api/dashboard/warehouse-load</code></td><td>Per-warehouse load data</td></tr>
-          <tr><td><code>GET</code></td><td><code>/api/health</code></td><td>Backend health check</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </main>
-</div>
-
-<script src="/api.js"></script>
-<script src="/sidebar.js"></script>
-<script src="/js/connections.js"></script>
-</body>
+    <script src="/api.js"></script>
+    <script src="/sidebar.js"></script>
+    <script src="/js/connections.js"></script>
+    <script src="/js/tilt.js"></script>
+  </body>
 </html>

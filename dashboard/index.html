@@ -1,95 +1,126 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <link rel="stylesheet" href="/styles.css"/>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Dashboard — ZoneScore</title>
-  <link rel="icon" href="/favicon.ico"/>  <script src="https://unpkg.com/feather-icons"></script>
-</head>
-<body>
-<div class="layout">
-
-  <main class="main">
-    <div class="page-header">
-      <div class="page-header-left">
-        <div class="page-title">Dashboard</div>
-        <div class="page-sub">Live network analytics — auto-refreshes every 30 seconds</div>
-      </div>
-    </div>
-
-    <div class="kpi-grid" id="kpiGrid">
-      <div class="kpi-card">
-        <div class="kpi-label"><span class="spinner"></span> Loading…</div>
-      </div>
-    </div>
-
-    <div class="sim-box">
-      <div class="sim-box-header">
-        <span class="table-title">⚡ Algorithm Comparison Simulator</span>
-        <span class="page-sub">Run all 4 algorithms side-by-side — perfect for viva demo</span>
-      </div>
-      <div class="sim-box-body">
-        <div class="sim-inputs">
-          <div class="sim-input-group">
-            <label>Customer Latitude</label>
-            <input class="form-input" id="simLat" type="number" step="any" value="19.1136"/>
+  <head>
+    <link rel="stylesheet" href="/styles.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dashboard — ZoneScore</title>
+    <link rel="icon" href="/favicon.ico" />
+    <script src="https://unpkg.com/feather-icons"></script>
+  </head>
+  <body>
+    <div class="layout">
+      <main class="main">
+        <div class="page-header">
+          <div class="page-header-left">
+            <div class="page-title">Dashboard</div>
+            <div class="page-sub">
+              Live network analytics — auto-refreshes every 30 seconds
+            </div>
           </div>
-          <div class="sim-input-group">
-            <label>Customer Longitude</label>
-            <input class="form-input" id="simLon" type="number" step="any" value="72.8697"/>
+        </div>
+
+        <div class="kpi-grid" id="kpiGrid">
+          <div class="kpi-card">
+            <div class="kpi-label"><span class="spinner"></span> Loading…</div>
           </div>
-          <button class="btn btn-primary" id="simBtn" onclick="runSim()">
-            <i data-feather="zap"></i> Run Simulation
-          </button>
         </div>
-        <div class="algo-grid" id="algoGrid" style="display:none"></div>
-      </div>
-    </div>
 
-    <div class="table-wrap">
-      <div class="table-header">
-        <span class="table-title">Warehouse Load</span>
-        <div class="table-actions">
-          <a href="/exec/" class="btn btn-ghost btn-sm">
-            <i data-feather="arrow-right"></i> View all
-          </a>
+        <div class="sim-box">
+          <div class="sim-box-header">
+            <span class="table-title">⚡ Algorithm Comparison Simulator</span>
+            <span class="page-sub"
+              >Run all 4 algorithms side-by-side — perfect for viva demo</span
+            >
+          </div>
+          <div class="sim-box-body">
+            <div class="sim-inputs">
+              <div class="sim-input-group">
+                <label>Customer Latitude</label>
+                <input
+                  class="form-input"
+                  id="simLat"
+                  type="number"
+                  step="any"
+                  value="19.1136"
+                />
+              </div>
+              <div class="sim-input-group">
+                <label>Customer Longitude</label>
+                <input
+                  class="form-input"
+                  id="simLon"
+                  type="number"
+                  step="any"
+                  value="72.8697"
+                />
+              </div>
+              <button class="btn btn-primary" id="simBtn" onclick="runSim()">
+                <i data-feather="zap"></i> Run Simulation
+              </button>
+            </div>
+            <div class="algo-grid" id="algoGrid" style="display: none"></div>
+          </div>
         </div>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Warehouse</th><th>City</th><th>Status</th>
-            <th>Orders / Cap</th><th>Load</th>
-          </tr>
-        </thead>
-        <tbody id="whBody">
-          <tr><td colspan="5" class="table-empty"><span class="spinner"></span> Loading…</td></tr>
-        </tbody>
-      </table>
+
+        <div class="table-wrap">
+          <div class="table-header">
+            <span class="table-title">Warehouse Load</span>
+            <div class="table-actions">
+              <a href="/exec/" class="btn btn-ghost btn-sm">
+                <i data-feather="arrow-right"></i> View all
+              </a>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Warehouse</th>
+                <th>City</th>
+                <th>Status</th>
+                <th>Orders / Cap</th>
+                <th>Load</th>
+              </tr>
+            </thead>
+            <tbody id="whBody">
+              <tr>
+                <td colspan="5" class="table-empty">
+                  <span class="spinner"></span> Loading…
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-wrap">
+          <div class="table-header">
+            <span class="table-title">Recent Orders</span>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Assigned Warehouse</th>
+                <th>Algorithm</th>
+                <th>Distance</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="ordBody">
+              <tr>
+                <td colspan="5" class="table-empty">
+                  <span class="spinner"></span> Loading…
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
     </div>
 
-    <div class="table-wrap">
-      <div class="table-header">
-        <span class="table-title">Recent Orders</span>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Customer</th><th>Assigned Warehouse</th>
-            <th>Algorithm</th><th>Distance</th><th>Status</th>
-          </tr>
-        </thead>
-        <tbody id="ordBody">
-          <tr><td colspan="5" class="table-empty"><span class="spinner"></span> Loading…</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </main>
-</div>
-
-<script src="/api.js"></script>
-<script src="/sidebar.js"></script>
-<script src="/js/dashboard.js"></script>
-</body>
+    <script src="/api.js"></script>
+    <script src="/sidebar.js"></script>
+    <script src="/js/dashboard.js"></script>
+    <script src="/js/tilt.js"></script>
+  </body>
 </html>

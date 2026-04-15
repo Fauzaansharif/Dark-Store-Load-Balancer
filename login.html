@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Admin Login — ZoneScore</title>
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/login.css" />
+  </head>
+  <body class="login-body">
+    <div class="login-bg-warehouse"></div>
+    <div class="login-bg-grid"></div>
+    <div class="login-bg-glow"></div>
+    <div class="noise"></div>
+
+    <div class="login-wrap">
+      <!-- Back link -->
+      <a href="/" class="login-back">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M19 12H5M12 5l-7 7 7 7" />
+        </svg>
+        Back to home
+      </a>
+
+      <div class="login-card tilt-card" id="loginCard">
+        <!-- Logo -->
+        <div class="login-logo">
+          <div class="login-logo-mark">Z</div>
+          <div>
+            <div class="login-logo-name">ZoneScore</div>
+            <div class="login-logo-sub">Admin Portal</div>
+          </div>
+        </div>
+
+        <h1 class="login-title">Welcome back</h1>
+        <p class="login-sub">
+          Sign in to access the dark store management dashboard.
+        </p>
+
+        <div class="login-form">
+          <div class="lf-group">
+            <label class="lf-label">Email address</label>
+            <input
+              class="lf-input"
+              id="email"
+              type="email"
+              placeholder="admin@zonescore.io"
+              autocomplete="email"
+            />
+          </div>
+          <div class="lf-group">
+            <label class="lf-label">
+              Password
+              <span class="lf-forgot">Forgot password?</span>
+            </label>
+            <div class="lf-pw-wrap">
+              <input
+                class="lf-input"
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                autocomplete="current-password"
+              />
+              <button
+                class="lf-eye"
+                onclick="togglePw()"
+                id="eyeBtn"
+                type="button"
+                title="Show password"
+              >
+                <svg
+                  id="eyeIcon"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="lf-hint">
+            <span class="hint-dot"></span>
+            Demo credentials: <code>admin@zonescore.io</code> /
+            <code>admin123</code>
+          </div>
+
+          <button class="lf-btn" id="loginBtn" onclick="doLogin()">
+            <span id="loginBtnText">Sign in to Dashboard</span>
+            <span
+              id="loginBtnSpinner"
+              class="lf-spinner"
+              style="display: none"
+            ></span>
+          </button>
+
+          <div id="loginAlert" class="lf-alert" style="display: none"></div>
+        </div>
+
+        <div class="login-divider">
+          <span>or continue as</span>
+        </div>
+
+        <a href="/dashboard/" class="lf-btn-ghost">
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+          </svg>
+          Guest (view dashboard only)
+        </a>
+      </div>
+
+      <div class="login-footer-text">
+        ECE Major Project · Rizvi College · Fauzaan, Rehan, Hasan &amp; Saad
+      </div>
+    </div>
+
+    <script src="/js/login.js"></script>
+  </body>
+</html>
