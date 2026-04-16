@@ -1,161 +1,121 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="stylesheet" href="/styles.css" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Warehouses — ZoneScore</title>
-    <link rel="icon" href="/favicon.ico" />
-    <script src="https://unpkg.com/feather-icons"></script>
-  </head>
-  <body>
-    <div class="layout">
-      <main class="main">
-        <div class="page-header">
-          <div class="page-header-left">
-            <div class="page-title">Warehouses</div>
-            <div class="page-sub">Manage your dark store network</div>
-          </div>
-          <div class="page-actions">
-            <button class="btn btn-primary" onclick="openModal()">
-              <i data-feather="plus"></i> Add Warehouse
-            </button>
-          </div>
-        </div>
+<head>
+  <link rel="stylesheet" href="/styles.css"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Warehouses — ZoneScore</title>
+  <link rel="icon" href="/favicon.ico"/>  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div class="layout">
 
-        <div class="table-wrap">
-          <div class="table-header">
-            <span class="table-title">All Warehouses</span>
-            <div class="table-actions filter-bar">
-              <select class="form-select" id="filterStatus" onchange="loadWH()">
-                <option value="">All statuses</option>
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
-                <option value="maintenance">Maintenance</option>
-              </select>
-            </div>
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>City</th>
-                <th>Coordinates</th>
-                <th>Load</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="whBody">
-              <tr>
-                <td colspan="6" class="table-empty">
-                  <span class="spinner"></span> Loading…
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div id="pageAlert" class="alert"></div>
-      </main>
+  <main class="main">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="page-title">Warehouses</div>
+        <div class="page-sub">Manage your dark store network</div>
+      </div>
+      <div class="page-actions">
+        <button class="btn btn-primary" onclick="openModal()">
+          <i data-feather="plus"></i> Add Warehouse
+        </button>
+      </div>
     </div>
 
-    <!-- Add / Edit Modal -->
-    <div class="modal-backdrop" id="modal">
-      <div class="modal">
-        <div class="modal-header">
-          <span class="modal-title" id="modalTitle">Add Warehouse</span>
-          <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="table-wrap">
+      <div class="table-header">
+        <span class="table-title">All Warehouses</span>
+        <div class="table-actions filter-bar">
+          <select class="form-select" id="filterStatus" onchange="loadWH()">
+            <option value="">All statuses</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+            <option value="maintenance">Maintenance</option>
+          </select>
         </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>Coordinates</th>
+            <th>Load</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="whBody">
+          <tr><td colspan="6" class="table-empty"><span class="spinner"></span> Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-        <div class="form-grid">
-          <input type="hidden" id="whId" />
+    <div id="pageAlert" class="alert"></div>
+  </main>
+</div>
 
-          <div class="form-group">
-            <label class="form-label"
-              >Warehouse Name <span class="form-required">*</span></label
-            >
-            <input
-              class="form-input"
-              id="whName"
-              placeholder="e.g. Mumbai Central Dark Store"
-            />
-          </div>
+<!-- Add / Edit Modal -->
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title" id="modalTitle">Add Warehouse</span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
 
-          <div class="form-group">
-            <label class="form-label">City</label>
-            <input class="form-input" id="whCity" placeholder="e.g. Mumbai" />
-          </div>
+    <div class="form-grid">
+      <input type="hidden" id="whId"/>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label"
-                >Latitude <span class="form-required">*</span></label
-              >
-              <input
-                class="form-input"
-                id="whLat"
-                type="number"
-                step="any"
-                placeholder="19.0760"
-              />
-              <span class="form-hint">Decimal degrees (e.g. 19.0760)</span>
-            </div>
-            <div class="form-group">
-              <label class="form-label"
-                >Longitude <span class="form-required">*</span></label
-              >
-              <input
-                class="form-input"
-                id="whLon"
-                type="number"
-                step="any"
-                placeholder="72.8777"
-              />
-            </div>
-          </div>
+      <div class="form-group">
+        <label class="form-label">Warehouse Name <span class="form-required">*</span></label>
+        <input class="form-input" id="whName" placeholder="e.g. Mumbai Central Dark Store"/>
+      </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label"
-                >Capacity <span class="form-required">*</span></label
-              >
-              <input
-                class="form-input"
-                id="whCap"
-                type="number"
-                placeholder="100"
-                min="1"
-              />
-              <span class="form-hint">Max concurrent orders</span>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Status</label>
-              <select class="form-select" id="whStatus">
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
-                <option value="maintenance">Maintenance</option>
-              </select>
-            </div>
-          </div>
+      <div class="form-group">
+        <label class="form-label">City</label>
+        <input class="form-input" id="whCity" placeholder="e.g. Mumbai"/>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Latitude <span class="form-required">*</span></label>
+          <input class="form-input" id="whLat" type="number" step="any" placeholder="19.0760"/>
+          <span class="form-hint">Decimal degrees (e.g. 19.0760)</span>
         </div>
+        <div class="form-group">
+          <label class="form-label">Longitude <span class="form-required">*</span></label>
+          <input class="form-input" id="whLon" type="number" step="any" placeholder="72.8777"/>
+        </div>
+      </div>
 
-        <div class="modal-footer">
-          <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
-          <button
-            class="btn btn-primary"
-            id="saveBtn"
-            onclick="saveWarehouse()"
-          >
-            Save Warehouse
-          </button>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Capacity <span class="form-required">*</span></label>
+          <input class="form-input" id="whCap" type="number" placeholder="100" min="1"/>
+          <span class="form-hint">Max concurrent orders</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-select" id="whStatus">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+            <option value="maintenance">Maintenance</option>
+          </select>
         </div>
       </div>
     </div>
 
-    <script src="/api.js"></script>
-    <script src="/sidebar.js"></script>
-    <script src="/js/warehouses.js"></script>
-    <script src="/js/tilt.js"></script>
-  </body>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" id="saveBtn" onclick="saveWarehouse()">Save Warehouse</button>
+    </div>
+  </div>
+</div>
+
+<script src="/api.js"></script>
+<script src="/sidebar.js"></script>
+<script src="/js/warehouses.js"></script>
+<script src="/js/tilt.js"></script>
+</body>
 </html>

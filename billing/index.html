@@ -1,147 +1,112 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Billing — ZoneScore</title>
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/styles.css" />
-    <script src="https://unpkg.com/feather-icons"></script>
-  </head>
-  <body>
-    <div class="layout">
-      <main class="main">
-        <div class="page-header">
-          <div class="page-header-left">
-            <div class="page-title">Billing</div>
-            <div class="page-sub">Manage your subscription plan</div>
-          </div>
-          <div class="page-actions">
-            <div id="currentPlanBadge" class="badge current-plan">
-              <span class="spinner"></span> Loading…
-            </div>
-          </div>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Billing — ZoneScore</title>
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="stylesheet" href="/styles.css"/>
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div class="layout">
+
+  <main class="main">
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="page-title">Billing</div>
+        <div class="page-sub">Manage your subscription plan</div>
+      </div>
+      <div class="page-actions">
+        <div id="currentPlanBadge" class="badge current-plan">
+          <span class="spinner"></span> Loading…
         </div>
-
-        <!-- Current billing info -->
-        <div class="billing-info" id="billingInfo" style="display: none">
-          <div class="billing-row">
-            <span class="billing-row-label">Current Plan</span>
-            <span class="billing-row-value" id="biPlan">—</span>
-          </div>
-          <div class="billing-row">
-            <span class="billing-row-label">Status</span>
-            <span id="biStatus">—</span>
-          </div>
-          <div class="billing-row">
-            <span class="billing-row-label">Monthly Amount</span>
-            <span class="billing-row-value invoice-amount" id="biAmount"
-              >—</span
-            >
-          </div>
-          <div class="billing-row">
-            <span class="billing-row-label">Current Period</span>
-            <span class="billing-row-value" id="biPeriod">—</span>
-          </div>
-        </div>
-
-        <!-- Plan cards -->
-        <div class="plan-grid">
-          <div class="plan-card" id="planStarter">
-            <div class="plan-name">Starter</div>
-            <div class="plan-price">
-              ₹0<span class="plan-price-sub">/mo</span>
-            </div>
-            <div class="plan-desc">
-              Perfect for single-location or academic projects exploring dark
-              store expansion.
-            </div>
-            <ul class="plan-features">
-              <li><span class="plan-check">✓</span> 1 User seat</li>
-              <li><span class="plan-check">✓</span> Up to 3 warehouses</li>
-              <li>
-                <span class="plan-check">✓</span> Nearest Warehouse algorithm
-              </li>
-              <li><span class="plan-check">✓</span> Basic dashboard</li>
-              <li><span class="plan-check">✓</span> Community support</li>
-            </ul>
-            <button
-              class="btn btn-ghost"
-              id="btnStarter"
-              onclick="upgradePlan('starter')"
-            >
-              Get Started Free
-            </button>
-          </div>
-
-          <div class="plan-card" id="planGrowth">
-            <div class="plan-ribbon">Most Popular</div>
-            <div class="plan-name">Growth</div>
-            <div class="plan-price">
-              ₹999<span class="plan-price-sub">/mo</span>
-            </div>
-            <div class="plan-desc">
-              The essential toolkit for businesses actively scaling their dark
-              store network.
-            </div>
-            <ul class="plan-features">
-              <li><span class="plan-check">✓</span> 10 User seats</li>
-              <li><span class="plan-check">✓</span> Unlimited warehouses</li>
-              <li>
-                <span class="plan-check">✓</span> All 4 load balancing
-                algorithms
-              </li>
-              <li><span class="plan-check">✓</span> Algorithm simulator</li>
-              <li><span class="plan-check">✓</span> Workflow automation</li>
-              <li><span class="plan-check">✓</span> Priority email support</li>
-            </ul>
-            <button
-              class="btn btn-primary"
-              id="btnGrowth"
-              onclick="upgradePlan('growth')"
-            >
-              Start 14-Day Trial
-            </button>
-          </div>
-
-          <div class="plan-card" id="planEnterprise">
-            <div class="plan-name">Enterprise</div>
-            <div class="plan-price">
-              Custom<span class="plan-price-sub"></span>
-            </div>
-            <div class="plan-desc">
-              Bespoke solutions for large-scale operations with unique
-              infrastructure requirements.
-            </div>
-            <ul class="plan-features">
-              <li><span class="plan-check">✓</span> Unlimited seats</li>
-              <li><span class="plan-check">✓</span> Unlimited warehouses</li>
-              <li><span class="plan-check">✓</span> Custom algorithm tuning</li>
-              <li>
-                <span class="plan-check">✓</span> API access &amp; integrations
-              </li>
-              <li>
-                <span class="plan-check">✓</span> Dedicated account manager
-              </li>
-              <li><span class="plan-check">✓</span> 24/7 SLA support</li>
-            </ul>
-            <button
-              class="btn btn-outline"
-              id="btnEnterprise"
-              onclick="upgradePlan('enterprise')"
-            >
-              Contact Sales
-            </button>
-          </div>
-        </div>
-
-        <div id="pageAlert" class="alert"></div>
-      </main>
+      </div>
     </div>
 
-    <script src="/api.js"></script>
-    <script src="/sidebar.js"></script>
-    <script src="/js/billing.js"></script>
-    <script src="/js/tilt.js"></script>
-  </body>
+    <!-- Current billing info -->
+    <div class="billing-info" id="billingInfo" style="display:none">
+      <div class="billing-row">
+        <span class="billing-row-label">Current Plan</span>
+        <span class="billing-row-value" id="biPlan">—</span>
+      </div>
+      <div class="billing-row">
+        <span class="billing-row-label">Status</span>
+        <span id="biStatus">—</span>
+      </div>
+      <div class="billing-row">
+        <span class="billing-row-label">Monthly Amount</span>
+        <span class="billing-row-value invoice-amount" id="biAmount">—</span>
+      </div>
+      <div class="billing-row">
+        <span class="billing-row-label">Current Period</span>
+        <span class="billing-row-value" id="biPeriod">—</span>
+      </div>
+    </div>
+
+    <!-- Plan cards -->
+    <div class="plan-grid">
+
+      <div class="plan-card" id="planStarter">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">₹0<span class="plan-price-sub">/mo</span></div>
+        <div class="plan-desc">Perfect for single-location or academic projects exploring dark store expansion.</div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span> 1 User seat</li>
+          <li><span class="plan-check">✓</span> Up to 3 warehouses</li>
+          <li><span class="plan-check">✓</span> Nearest Warehouse algorithm</li>
+          <li><span class="plan-check">✓</span> Basic dashboard</li>
+          <li><span class="plan-check">✓</span> Community support</li>
+        </ul>
+        <button class="btn btn-ghost" id="btnStarter" onclick="upgradePlan('starter')">
+          Get Started Free
+        </button>
+      </div>
+
+      <div class="plan-card" id="planGrowth">
+        <div class="plan-ribbon">Most Popular</div>
+        <div class="plan-name">Growth</div>
+        <div class="plan-price">₹999<span class="plan-price-sub">/mo</span></div>
+        <div class="plan-desc">The essential toolkit for businesses actively scaling their dark store network.</div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span> 10 User seats</li>
+          <li><span class="plan-check">✓</span> Unlimited warehouses</li>
+          <li><span class="plan-check">✓</span> All 4 load balancing algorithms</li>
+          <li><span class="plan-check">✓</span> Algorithm simulator</li>
+          <li><span class="plan-check">✓</span> Workflow automation</li>
+          <li><span class="plan-check">✓</span> Priority email support</li>
+        </ul>
+        <button class="btn btn-primary" id="btnGrowth" onclick="upgradePlan('growth')">
+          Start 14-Day Trial
+        </button>
+      </div>
+
+      <div class="plan-card" id="planEnterprise">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-price">Custom<span class="plan-price-sub"></span></div>
+        <div class="plan-desc">Bespoke solutions for large-scale operations with unique infrastructure requirements.</div>
+        <ul class="plan-features">
+          <li><span class="plan-check">✓</span> Unlimited seats</li>
+          <li><span class="plan-check">✓</span> Unlimited warehouses</li>
+          <li><span class="plan-check">✓</span> Custom algorithm tuning</li>
+          <li><span class="plan-check">✓</span> API access &amp; integrations</li>
+          <li><span class="plan-check">✓</span> Dedicated account manager</li>
+          <li><span class="plan-check">✓</span> 24/7 SLA support</li>
+        </ul>
+        <button class="btn btn-outline" id="btnEnterprise" onclick="upgradePlan('enterprise')">
+          Contact Sales
+        </button>
+      </div>
+
+    </div>
+
+    <div id="pageAlert" class="alert"></div>
+  </main>
+</div>
+
+<script src="/api.js"></script>
+<script src="/sidebar.js"></script>
+<script src="/js/billing.js"></script>
+<script src="/js/tilt.js"></script>
+</body>
 </html>

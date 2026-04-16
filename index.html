@@ -1,434 +1,306 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>ZoneScore — Dark Store Load Balancer</title>
-    <link rel="stylesheet" href="landing.css" />
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- ── Background layers ─────────────────────────── -->
-    <div class="bg-warehouse"></div>
-    <div class="bg-grid"></div>
-    <div class="bg-glow"></div>
-    <div class="noise"></div>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ZoneScore — Dark Store Load Balancer</title>
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/landing.css"/>
+</head>
+<body>
 
-    <!-- ── Nav ──────────────────────────────────────── -->
-    <nav class="nav" id="nav">
-      <div class="nav-inner">
-        <a href="/" class="nav-logo">
-          <span class="nav-logo-mark">Z</span>
-          <span class="nav-logo-text">ZoneScore</span>
-        </a>
-        <div class="nav-links">
-          <a href="#features">Features</a>
-          <a href="#algorithms">Algorithms</a>
-          <a href="#team">Team</a>
-        </div>
-        <a href="/login.html" class="nav-cta">Admin Login →</a>
+<!-- ── Background layers ─────────────────────────── -->
+<div class="bg-warehouse"></div>
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+<div class="noise"></div>
+
+<!-- ── Nav ──────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-mark">Z</span>
+      <span class="nav-logo-text">ZoneScore</span>
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#algorithms">Algorithms</a>
+      <a href="#team">Team</a>
+    </div>
+    <a href="/login.html" class="nav-cta">Admin Login →</a>
+  </div>
+</nav>
+
+<!-- ── Hero ─────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="dot"></span> Major Project · ECE · Rizvi College
+    </div>
+    <h1 class="hero-title">
+      Smart Load Balancing<br/>
+      <span class="hero-title-accent">for Dark Stores</span>
+    </h1>
+    <p class="hero-sub">
+      ZoneScore intelligently routes customer orders across your dark store
+      network using four adaptive algorithms — minimising delivery time,
+      balancing capacity, and keeping every warehouse optimally loaded.
+    </p>
+    <div class="hero-actions">
+      <a href="/login.html" class="btn-hero-primary">
+        Enter Dashboard
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#algorithms" class="btn-hero-ghost">See How It Works</a>
+    </div>
+
+    <!-- Stat strip -->
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-val">4</span>
+        <span class="stat-label">Algorithms</span>
       </div>
-    </nav>
-
-    <!-- ── Hero ─────────────────────────────────────── -->
-    <section class="hero" id="home">
-      <div class="hero-inner">
-        <div class="hero-eyebrow">
-          <span class="dot"></span> Major Project · ECS · Rizvi College Of
-          Engineering
-        </div>
-        <h1 class="hero-title">
-          Smart Load Balancing<br />
-          <span class="hero-title-accent">for Dark Stores</span>
-        </h1>
-        <p class="hero-sub">
-          ZoneScore intelligently routes customer orders across your dark store
-          network using four adaptive algorithms — minimising delivery time,
-          balancing capacity, and keeping every warehouse optimally loaded.
-        </p>
-        <div class="hero-actions">
-          <a href="/login.html" class="btn-hero-primary">
-            Enter Dashboard
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </a>
-          <a href="#algorithms" class="btn-hero-ghost">See How It Works</a>
-        </div>
-
-        <!-- Stat strip -->
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-val">4</span>
-            <span class="stat-label">Algorithms</span>
-          </div>
-          <div class="stat-div"></div>
-          <div class="stat">
-            <span class="stat-val">Real-time</span>
-            <span class="stat-label">Load monitoring</span>
-          </div>
-          <div class="stat-div"></div>
-          <div class="stat">
-            <span class="stat-val">SQLite</span>
-            <span class="stat-label">Database</span>
-          </div>
-          <div class="stat-div"></div>
-          <div class="stat">
-            <span class="stat-val">REST</span>
-            <span class="stat-label">API backend</span>
-          </div>
-        </div>
+      <div class="stat-div"></div>
+      <div class="stat">
+        <span class="stat-val">Real-time</span>
+        <span class="stat-label">Load monitoring</span>
       </div>
-    </section>
+      <div class="stat-div"></div>
+      <div class="stat">
+        <span class="stat-val">SQLite</span>
+        <span class="stat-label">Database</span>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat">
+        <span class="stat-val">REST</span>
+        <span class="stat-label">API backend</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- ── Features ──────────────────────────────────── -->
-    <section class="section" id="features">
-      <div class="section-inner">
-        <div class="section-header">
-          <div class="section-tag">Platform Features</div>
-          <h2 class="section-title">
-            Everything you need to manage<br />a dark store network
-          </h2>
+<!-- ── Features ──────────────────────────────────── -->
+<section class="section" id="features">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Platform Features</div>
+      <h2 class="section-title">Everything you need to manage<br/>a dark store network</h2>
+    </div>
+
+    <div class="features-grid">
+
+      <div class="feat-card tilt-card" data-tilt>
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
         </div>
+        <h3 class="feat-title">Real-time Dispatch</h3>
+        <p class="feat-desc">Orders are routed the instant they arrive. The selected algorithm runs in milliseconds and returns the optimal warehouse immediately.</p>
+      </div>
 
-        <div class="features-grid">
-          <div class="feat-card tilt-card" data-tilt>
-            <div class="feat-icon">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 8v4l3 3" />
-              </svg>
-            </div>
-            <h3 class="feat-title">Real-time Dispatch</h3>
-            <p class="feat-desc">
-              Orders are routed the instant they arrive. The selected algorithm
-              runs in milliseconds and returns the optimal warehouse
-              immediately.
-            </p>
-          </div>
+      <div class="feat-card tilt-card" data-tilt>
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3 class="feat-title">Geo-aware Routing</h3>
+        <p class="feat-desc">The Nearest Warehouse algorithm uses the Haversine formula to calculate real-world distances accounting for Earth's curvature.</p>
+      </div>
 
-          <div class="feat-card tilt-card" data-tilt>
-            <div class="feat-icon">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-              >
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-            </div>
-            <h3 class="feat-title">Geo-aware Routing</h3>
-            <p class="feat-desc">
-              The Nearest Warehouse algorithm uses the Haversine formula to
-              calculate real-world distances accounting for Earth's curvature.
-            </p>
-          </div>
+      <div class="feat-card tilt-card" data-tilt>
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3 class="feat-title">Live Load Dashboard</h3>
+        <p class="feat-desc">Monitor every warehouse in real time — capacity usage, order counts, load percentage, and algorithm breakdown, all in one view.</p>
+      </div>
 
-          <div class="feat-card tilt-card" data-tilt>
-            <div class="feat-icon">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-              >
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-              </svg>
-            </div>
-            <h3 class="feat-title">Live Load Dashboard</h3>
-            <p class="feat-desc">
-              Monitor every warehouse in real time — capacity usage, order
-              counts, load percentage, and algorithm breakdown, all in one view.
-            </p>
-          </div>
+      <div class="feat-card tilt-card" data-tilt>
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="feat-title">Algorithm Simulator</h3>
+        <p class="feat-desc">Run all four algorithms on the same customer location simultaneously and compare which warehouse each one selects — perfect for viva demos.</p>
+      </div>
 
-          <div class="feat-card tilt-card" data-tilt>
-            <div class="feat-icon">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-              >
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              </svg>
-            </div>
-            <h3 class="feat-title">Algorithm Simulator</h3>
-            <p class="feat-desc">
-              Run all four algorithms on the same customer location
-              simultaneously and compare which warehouse each one selects —
-              perfect for viva demos.
-            </p>
-          </div>
+      <div class="feat-card tilt-card" data-tilt>
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3 class="feat-title">Warehouse CRUD</h3>
+        <p class="feat-desc">Add, edit, and remove dark stores from the network. Toggle active, inactive, or maintenance status — changes reflect instantly in routing.</p>
+      </div>
 
-          <div class="feat-card tilt-card" data-tilt>
-            <div class="feat-icon">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-              >
-                <rect x="2" y="3" width="20" height="14" rx="2" />
-                <path d="M8 21h8M12 17v4" />
-              </svg>
-            </div>
-            <h3 class="feat-title">Warehouse CRUD</h3>
-            <p class="feat-desc">
-              Add, edit, and remove dark stores from the network. Toggle active,
-              inactive, or maintenance status — changes reflect instantly in
-              routing.
-            </p>
-          </div>
+      <div class="feat-card tilt-card" data-tilt>
+        <div class="feat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <h3 class="feat-title">SQLite Backend</h3>
+        <p class="feat-desc">Zero-config SQL database using better-sqlite3. All data persists locally — no cloud DB needed, no external dependencies, instant queries.</p>
+      </div>
 
-          <div class="feat-card tilt-card" data-tilt>
-            <div class="feat-icon">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-              >
-                <ellipse cx="12" cy="5" rx="9" ry="3" />
-                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
-                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-              </svg>
-            </div>
-            <h3 class="feat-title">SQLite Backend</h3>
-            <p class="feat-desc">
-              Zero-config SQL database using better-sqlite3. All data persists
-              locally — no cloud DB needed, no external dependencies, instant
-              queries.
-            </p>
-          </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Algorithms ─────────────────────────────────── -->
+<section class="section section-dark" id="algorithms">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Core Algorithms</div>
+      <h2 class="section-title">Four strategies. One goal:<br/>optimal order assignment.</h2>
+    </div>
+
+    <div class="algo-grid">
+
+      <div class="algo-card tilt-card" data-tilt>
+        <div class="algo-num">01</div>
+        <div class="algo-badge nearest">Nearest Warehouse</div>
+        <p class="algo-desc">Uses the <strong>Haversine formula</strong> to compute great-circle distance between the customer's GPS coordinates and every active warehouse. Picks the closest one with available capacity.</p>
+        <div class="algo-tag-row">
+          <span class="tag">O(n)</span>
+          <span class="tag">Geo-aware</span>
+          <span class="tag">Min. delivery time</span>
         </div>
       </div>
-    </section>
 
-    <!-- ── Algorithms ─────────────────────────────────── -->
-    <section class="section section-dark" id="algorithms">
-      <div class="section-inner">
-        <div class="section-header">
-          <div class="section-tag">Core Algorithms</div>
-          <h2 class="section-title">
-            Four strategies. One goal:<br />optimal order assignment.
-          </h2>
-        </div>
-
-        <div class="algo-grid">
-          <div class="algo-card tilt-card" data-tilt>
-            <div class="algo-num">01</div>
-            <div class="algo-badge nearest">Nearest Warehouse</div>
-            <p class="algo-desc">
-              Uses the <strong>Haversine formula</strong> to compute
-              great-circle distance between the customer's GPS coordinates and
-              every active warehouse. Picks the closest one with available
-              capacity.
-            </p>
-            <div class="algo-tag-row">
-              <span class="tag">O(n)</span>
-              <span class="tag">Geo-aware</span>
-              <span class="tag">Min. delivery time</span>
-            </div>
-          </div>
-
-          <div class="algo-card tilt-card" data-tilt>
-            <div class="algo-num">02</div>
-            <div class="algo-badge roundrobin">Round Robin</div>
-            <p class="algo-desc">
-              Cycles through active warehouses in sequence — each gets a turn
-              before any gets a second. Simple, fair, and stateless. The index
-              is tracked in memory and resets on restart.
-            </p>
-            <div class="algo-tag-row">
-              <span class="tag">O(1)</span>
-              <span class="tag">Fair distribution</span>
-              <span class="tag">Stateless</span>
-            </div>
-          </div>
-
-          <div class="algo-card tilt-card" data-tilt>
-            <div class="algo-num">03</div>
-            <div class="algo-badge weighted">Weighted Round Robin</div>
-            <p class="algo-desc">
-              Proportional to capacity — a 200-slot warehouse gets exactly twice
-              as many orders as a 100-slot one. Implemented using the classic
-              GCD-based weight cycling algorithm.
-            </p>
-            <div class="algo-tag-row">
-              <span class="tag">O(n)</span>
-              <span class="tag">Capacity-proportional</span>
-              <span class="tag">Heterogeneous fleets</span>
-            </div>
-          </div>
-
-          <div class="algo-card tilt-card" data-tilt>
-            <div class="algo-num">04</div>
-            <div class="algo-badge least">Least Loaded</div>
-            <p class="algo-desc">
-              Scans all active warehouses and picks the one with the largest
-              number of free slots (capacity − currentOrders). Prevents any
-              single node from becoming a bottleneck.
-            </p>
-            <div class="algo-tag-row">
-              <span class="tag">O(n)</span>
-              <span class="tag">Anti-bottleneck</span>
-              <span class="tag">Max free capacity</span>
-            </div>
-          </div>
+      <div class="algo-card tilt-card" data-tilt>
+        <div class="algo-num">02</div>
+        <div class="algo-badge roundrobin">Round Robin</div>
+        <p class="algo-desc">Cycles through active warehouses in sequence — each gets a turn before any gets a second. Simple, fair, and stateless. The index is tracked in memory and resets on restart.</p>
+        <div class="algo-tag-row">
+          <span class="tag">O(1)</span>
+          <span class="tag">Fair distribution</span>
+          <span class="tag">Stateless</span>
         </div>
       </div>
-    </section>
 
-    <!-- ── Tech stack ─────────────────────────────────── -->
-    <section class="section" id="stack">
-      <div class="section-inner">
-        <div class="section-header">
-          <div class="section-tag">Tech Stack</div>
-          <h2 class="section-title">Built with production-grade tools</h2>
-        </div>
-        <div class="stack-grid">
-          <div class="stack-card tilt-card" data-tilt>
-            <div class="stack-label">Frontend</div>
-            <div class="stack-items">
-              <span>HTML5</span><span>CSS3</span><span>Vanilla JS</span
-              ><span>Feather Icons</span>
-            </div>
-          </div>
-          <div class="stack-card tilt-card" data-tilt>
-            <div class="stack-label">Backend</div>
-            <div class="stack-items">
-              <span>Node.js</span><span>Express.js</span><span>REST API</span
-              ><span>CORS + Helmet</span>
-            </div>
-          </div>
-          <div class="stack-card tilt-card" data-tilt>
-            <div class="stack-label">Database</div>
-            <div class="stack-items">
-              <span>SQLite</span><span>better-sqlite3</span><span>WAL mode</span
-              ><span>Foreign keys</span>
-            </div>
-          </div>
-          <div class="stack-card tilt-card" data-tilt>
-            <div class="stack-label">Deployment</div>
-            <div class="stack-items">
-              <span>Vercel</span><span>Render.com</span><span>GitHub</span
-              ><span>Node 18+</span>
-            </div>
-          </div>
+      <div class="algo-card tilt-card" data-tilt>
+        <div class="algo-num">03</div>
+        <div class="algo-badge weighted">Weighted Round Robin</div>
+        <p class="algo-desc">Proportional to capacity — a 200-slot warehouse gets exactly twice as many orders as a 100-slot one. Implemented using the classic GCD-based weight cycling algorithm.</p>
+        <div class="algo-tag-row">
+          <span class="tag">O(n)</span>
+          <span class="tag">Capacity-proportional</span>
+          <span class="tag">Heterogeneous fleets</span>
         </div>
       </div>
-    </section>
 
-    <!-- ── Team ───────────────────────────────────────── -->
-    <section class="section section-dark" id="team">
-      <div class="section-inner">
-        <div class="section-header">
-          <div class="section-tag">The Team</div>
-          <h2 class="section-title">Built by</h2>
-        </div>
-        <div class="team-grid">
-          <div class="team-card tilt-card" data-tilt>
-            <div class="team-avatar">F</div>
-            <div class="team-name">Fauzaan Sharif</div>
-            <div class="team-role">Frontend, UI & Backend</div>
-          </div>
-          <div class="team-card tilt-card" data-tilt>
-            <div class="team-avatar">R</div>
-            <div class="team-name">Hasan Khan</div>
-            <div class="team-role">Frontend, DB & UI</div>
-          </div>
-          <div class="team-card tilt-card" data-tilt>
-            <div class="team-avatar">H</div>
-            <div class="team-name">Rehan Sayed</div>
-            <div class="team-role">Design Team & DB</div>
-          </div>
-          <div class="team-card tilt-card" data-tilt>
-            <div class="team-avatar">S</div>
-            <div class="team-name">Saad Shaikh</div>
-            <div class="team-role">Documentation and database</div>
-          </div>
+      <div class="algo-card tilt-card" data-tilt>
+        <div class="algo-num">04</div>
+        <div class="algo-badge least">Least Loaded</div>
+        <p class="algo-desc">Scans all active warehouses and picks the one with the largest number of free slots (capacity − currentOrders). Prevents any single node from becoming a bottleneck.</p>
+        <div class="algo-tag-row">
+          <span class="tag">O(n)</span>
+          <span class="tag">Anti-bottleneck</span>
+          <span class="tag">Max free capacity</span>
         </div>
       </div>
-    </section>
 
-    <!-- ── CTA ────────────────────────────────────────── -->
-    <section class="cta-section">
-      <div class="cta-inner">
-        <h2 class="cta-title">Ready to explore the platform?</h2>
-        <p class="cta-sub">
-          Log in as admin to access the dashboard, run simulations, and manage
-          your dark store network.
-        </p>
-        <a href="/login.html" class="btn-hero-primary">
-          Go to Admin Login
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </a>
-      </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- ── Footer ─────────────────────────────────────── -->
-    <footer class="footer">
-      <div class="footer-inner">
-        <div class="footer-logo">
-          <span class="nav-logo-mark">Z</span>
-          <span>ZoneScore</span>
-        </div>
-        <div class="footer-text">
-          ECS Major Project · Rizvi College · 2025 &nbsp;·&nbsp; Built by
-          Fauzaan, Hasan, Rehan &amp; Saad
-          <br />
-          Guide : Prof. Farhan Shaikh
-        </div>
-        <div class="footer-links">
-          <a href="/dashboard/">Dashboard</a>
-          <a href="/exec/">Warehouses</a>
-          <a href="/connections/">API Docs</a>
+<!-- ── Tech stack ─────────────────────────────────── -->
+<section class="section" id="stack">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Tech Stack</div>
+      <h2 class="section-title">Built with production-grade tools</h2>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-card tilt-card" data-tilt>
+        <div class="stack-label">Frontend</div>
+        <div class="stack-items">
+          <span>HTML5</span><span>CSS3</span><span>Vanilla JS</span><span>Feather Icons</span>
         </div>
       </div>
-    </footer>
+      <div class="stack-card tilt-card" data-tilt>
+        <div class="stack-label">Backend</div>
+        <div class="stack-items">
+          <span>Node.js</span><span>Express.js</span><span>REST API</span><span>CORS + Helmet</span>
+        </div>
+      </div>
+      <div class="stack-card tilt-card" data-tilt>
+        <div class="stack-label">Database</div>
+        <div class="stack-items">
+          <span>SQLite</span><span>better-sqlite3</span><span>WAL mode</span><span>Foreign keys</span>
+        </div>
+      </div>
+      <div class="stack-card tilt-card" data-tilt>
+        <div class="stack-label">Deployment</div>
+        <div class="stack-items">
+          <span>Vercel</span><span>Render.com</span><span>GitHub</span><span>Node 18+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script src="/js/landing.js"></script>
-  </body>
+<!-- ── Team ───────────────────────────────────────── -->
+<section class="section section-dark" id="team">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">The Team</div>
+      <h2 class="section-title">Built by</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card tilt-card" data-tilt>
+        <div class="team-avatar">F</div>
+        <div class="team-name">Fauzaan</div>
+        <div class="team-role">Full-Stack Lead</div>
+      </div>
+      <div class="team-card tilt-card" data-tilt>
+        <div class="team-avatar">R</div>
+        <div class="team-name">Rehan</div>
+        <div class="team-role">Algorithm Design</div>
+      </div>
+      <div class="team-card tilt-card" data-tilt>
+        <div class="team-avatar">H</div>
+        <div class="team-name">Hasan</div>
+        <div class="team-role">Frontend & UI</div>
+      </div>
+      <div class="team-card tilt-card" data-tilt>
+        <div class="team-avatar">S</div>
+        <div class="team-name">Saad</div>
+        <div class="team-role">Backend & DB</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────── -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2 class="cta-title">Ready to explore the platform?</h2>
+    <p class="cta-sub">Log in as admin to access the dashboard, run simulations, and manage your dark store network.</p>
+    <a href="/login.html" class="btn-hero-primary">
+      Go to Admin Login
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <span class="nav-logo-mark">Z</span>
+      <span>ZoneScore</span>
+    </div>
+    <div class="footer-text">
+      ECE Major Project · Rizvi College · 2025 &nbsp;·&nbsp;
+      Built by Fauzaan, Rehan, Hasan &amp; Saad
+    </div>
+    <div class="footer-links">
+      <a href="/dashboard/">Dashboard</a>
+      <a href="/exec/">Warehouses</a>
+      <a href="/connections/">API Docs</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/landing.js"></script>
+</body>
 </html>

@@ -1,0 +1,63 @@
+/* dashboard-extra.css — extra styles for rider-aware dashboard */
+
+/* Zone tags */
+.zone-tag {
+  display:       inline-block;
+  font-size:     0.68rem;
+  font-weight:   700;
+  padding:       2px 8px;
+  border-radius: 4px;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  font-family:   'DM Mono', monospace;
+}
+.zone-south { background: rgba(15,186,129,0.12); color: #0fba81; border:1px solid rgba(15,186,129,0.25); }
+.zone-north { background: rgba(59,130,246,0.12); color: #5b8ff8; border:1px solid rgba(59,130,246,0.25); }
+.zone-west  { background: rgba(245,158,11,0.12); color: #f5a623; border:1px solid rgba(245,158,11,0.25); }
+.zone-east  { background: rgba(155,114,245,0.12);color: #9b72f5; border:1px solid rgba(155,114,245,0.25);}
+
+/* Rider count in table */
+.rider-count {
+  display:     inline-flex;
+  align-items: center;
+  gap:         5px;
+  font-size:   0.78rem;
+  font-weight: 600;
+}
+.rider-count svg { width:12px; height:12px; }
+.rider-count.has-riders { color: var(--green); }
+.rider-count.no-riders  { color: var(--text3); }
+
+/* Algo card extras */
+.algo-rider {
+  font-size:   0.73rem;
+  color:       var(--green);
+  margin-top:  6px;
+  font-weight: 500;
+}
+.algo-rider-none {
+  font-size:   0.73rem;
+  color:       var(--text3);
+  margin-top:  6px;
+}
+.algo-reason {
+  font-size:    0.70rem;
+  color:        var(--text2);
+  margin-top:   6px;
+  line-height:  1.4;
+  border-top:   1px solid var(--border);
+  padding-top:  6px;
+  font-style:   italic;
+}
+
+/* Sim info bar */
+.sim-info {
+  margin-top:    14px;
+  font-size:     0.74rem;
+  font-family:   'DM Mono', monospace;
+  color:         var(--text2);
+  background:    var(--surface2);
+  padding:       6px 12px;
+  border-radius: 6px;
+  border:        1px solid var(--border);
+}
